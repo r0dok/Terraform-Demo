@@ -1,4 +1,3 @@
-```markdown
 # S3 File Storage + DynamoDB Metadata
 
 Flask API for uploading files to S3 and storing metadata in DynamoDB. Deployed via Terraform.
@@ -6,7 +5,6 @@ Flask API for uploading files to S3 and storing metadata in DynamoDB. Deployed v
 ---
 
 ## Structure
-
 ```
 terraform-demo/
 ├── app.py              → Flask API for listing files
@@ -29,7 +27,6 @@ terraform-demo/
 ## Setup
 
 ### Deploy Infrastructure
-
 ```bash
 cd terraform
 terraform init
@@ -39,14 +36,12 @@ terraform apply
 Note the outputs: `api_endpoint`, `s3_bucket_name`, `dynamodb_table_name`
 
 ### Configure Environment
-
 ```bash
 export BUCKET_NAME=<your-bucket>
 export TABLE_NAME=<your-table>
 ```
 
 ### Deploy Lambda
-
 ```bash
 cd lambda_function
 pip install -r requirements.txt -t .
@@ -63,7 +58,6 @@ aws lambda update-function-code \
 **List Files**: `GET /files`
 - `page_size`: Items per page (default: 10)
 - `start_index`: Pagination offset (default: 0)
-
 ```bash
 curl https://your-api.execute-api.us-east-1.amazonaws.com/prod/files?page_size=20
 ```
@@ -75,4 +69,3 @@ curl https://your-api.execute-api.us-east-1.amazonaws.com/prod/files?page_size=2
 - S3 bucket is private by default
 - DynamoDB uses PAY_PER_REQUEST billing
 - Lambda has full S3 and DynamoDB access (lock this down for production)
-```
